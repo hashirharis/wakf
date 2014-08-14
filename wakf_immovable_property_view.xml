@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>   
+            
+            <record model="ir.ui.view" id="wakf_immovable_property_tree_view">
+                <field name="name">wakf.immovableproperty.tree</field>
+                <field name="model">wakf.immovableproperty</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="tree_string">
+                        <field name="name"/>
+                        <field name="wakf_id"/>
+                        <field name="type_id"/>
+                        <field name="landtype_id"/>
+                        <field name="village_id"/>
+                        <field name="taluk_id"/>
+                        <field name="district_id"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="wakf_immovable_property_form_view">
+                <field name="name">wakf.immovableproperty.form</field>
+                <field name="model">wakf.immovableproperty</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Immovable Property Details" version="7.0">
+                    <sheet>
+                       <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name" string="Property Name"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                       </div>
+                       <group>
+                       <group>
+                            <field name="wakf_id"/>
+                            
+                        	<field name="type_id"/>                    	                     	
+                     		<field name="landtype_id"/>
+                      		<field name="location_boundaries"/>
+                      		<field name="propery_specifications"/>
+                     	</group> 
+                     	<group > 
+                        	<field name="area"/>
+                      		<field name="units_id"/>   	
+                      		<field name="propery_classification"/>
+                      		<field name="wakf_objectives"/>
+                      		<field name="value"/>   	
+                      		<field name="valuation_date"/>
+                      		<field name="property_curr_status"/>
+                     	</group>                        
+                      </group>
+                        <group>
+                       <group>
+                        	<field name="survey_no"/>                    	                     	
+                     		<field name="survey_details"/>
+                      		<field name="survey_date"/>
+                      		<field name="census_code"/>
+                      		<field name="khata_no"/>
+                      		<field name="khewat_no"/>
+                     	</group> 
+                     	<group > 
+                        	<field name="amsom"/>
+                      		<field name="plot_no"/>   	
+                      		<field name="door_no"/>
+                      		<field name="patta_no"/>
+                      		<field name="district_id"/>   	
+                      		<field name="taluk_id"/>
+                      		<field name="village_id"/>
+                     	</group>                        
+                      </group>
+                      </sheet>
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_wakf_immovable_property_tree_view">
+                <field name="name">Immovable Property Details</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">wakf.immovableproperty</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="wakf_immovable_property_tree_view"/>
+            </record>
+
+			<menuitem id="wakf_immovable_property_menu" name="Immovable Property" parent="base.menu_sales" action="action_wakf_immovable_property_tree_view"/>
+
+    
+    </data>
+</openerp>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	
+            
+            <record model="ir.ui.view" id="earned_leave_tree_view">
+                <field name="name">earned.leave.tree</field>
+                <field name="model">earned.leave</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="tree_string" version="7.0">
+                        <field name="employee_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>   
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="earned_leave_form_view">
+                <field name="name">earned.leave.form</field>
+                <field name="model">earned.leave</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="form_string" version="7.0">
+                    <sheet>
+                    	<group>
+                    	<group string="Enter Details">
+                        	<field name="employee_id" select="1"/>
+                        	<field name="date_from"/>
+                        	<field name="date_to"/>
+                        	<button name="getdatas" string="Calculate" type="object" class="oe_edit_only oe_link"/>
+                        </group>
+                        <group string="Calculated Summary">
+                        	<field name="total_days"/>
+                        	<field name="total_worked"/>
+                        	<field name="number"/> days
+                        </group>
+                        
+                        </group>
+                        <notebook colspan="4">
+                        	<page string="Leave Lines">
+                        		<field name="leave_id" nolabel="1" widget="one2many_list">
+							 	 	<tree string="Earned Leave Lines" editable="bottom">
+							 	 		<field name="date"/>
+                        				<field name="state"/>
+                        			</tree>
+                        		</field>
+                        	</page>
+                        </notebook>
+                    </sheet>
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_earned_leave_tree_view">
+                <field name="name">earned.leave</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">earned.leave</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="earned_leave_tree_view"/>
+            </record>
+			<menuitem id="earned_leave_window_menu" name="Assessment Details" parent="account.menu_finance" sequence="1" />
+			<menuitem id="earned_leave_menu" name="Earned Leave" parent="hr.menu_hr_main" action="action_earned_leave_tree_view"/>
+
+    
+    </data>
+</openerp>

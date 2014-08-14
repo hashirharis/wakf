@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>            
+            <record model="ir.ui.view" id="wakf_district_tree_view">
+                <field name="name">wakf.district.tree</field>
+                <field name="model">wakf.district</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Districts">
+                        <field name="name"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="wakf_district_form_view">
+                <field name="name">wakf.district.form</field>
+                <field name="model">wakf.district</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="District">  
+                    <group colspan="4">                 
+                       <field name="name" select="1"/>
+                    </group> 
+                       <!--   <notebook>
+                          <page string="Taluk Details"> 
+                           <group colspan="4">
+                              <field name="taluk_id" /> 
+                            </group>
+                           </page>  
+                          </notebook>  -->
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_wakf_district_tree_view">
+                <field name="name">District</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">wakf.district</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="wakf_district_tree_view"/>
+            </record>
+            
+            
+            
+            <record model="ir.ui.view" id="wakf_taluk_tree_view">
+                <field name="name">wakf.taluk.tree</field>
+                <field name="model">wakf.taluk</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Taluk Details">
+                        <field name="name"/>
+                        <field name="district_id"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="wakf_taluk_form_view">
+                <field name="name">wakf.taluk.form</field>
+                <field name="model">wakf.taluk</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Taluk">
+                       <group>
+                         <field name="name" select="1"/>
+                         <field name="district_id" />
+                       </group>
+                        
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_wakf_taluk_tree_view">
+                <field name="name">Taluk Details</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">wakf.taluk</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="wakf_taluk_tree_view"/>
+            </record>
+      
+		                 
+            <record model="ir.ui.view" id="wakf_village_tree_view">
+                <field name="name">wakf.village.tree</field>
+                <field name="model">wakf.village</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Village Details">
+                        <field name="name"/>
+                        <field name="taluk_id" />
+                        <field name="district_id" />
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="wakf_village_form_view">
+                <field name="name">wakf.village.form</field>
+                <field name="model">wakf.village</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Village">
+                        <field name="name"/>
+                        <field name="taluk_id" />
+                        <field name="district_id" />
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_wakf_village_tree_view">
+                <field name="name">Village Details</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">wakf.village</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="wakf_village_tree_view"/>
+            </record>
+            
+            <!--  <menuitem id="wakf_configuration_menu" name="Configurations" parent="base.menu_base_wakf_registration" />-->
+            <menuitem id="wakf_district_menu" name="Districts" parent="base.menu_sales" action="action_wakf_district_tree_view"/>
+            <menuitem id="wakf_taluk_menu" name="Taluks" parent="base.menu_sales" action="action_wakf_taluk_tree_view"/>
+            <menuitem id="wakf_village_menu" name="Village" parent="base.menu_sales" action="action_wakf_village_tree_view"/>
+    </data>
+</openerp>

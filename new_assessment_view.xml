@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	<record model="ir.ui.view" id="assessment1_window_tree_view">
+                <field name="name">assessment.window.tree</field>
+                <field name="model">assessment.window</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Assessment Tree" version="7.0">
+                        <field name="name"/>
+                        <field name="wakf_id"/>
+                        <field name="district"/>
+                        <field name="assess_year"/>
+                        <field name="acc_year"/>
+                        
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="assessment1_window_form_view">
+                <field name="name">assessment.window.form</field>
+                <field name="model">assessment.window</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                
+                    <form string="Assessment Form" version="7.0">
+                    <sheet>
+                    	<group>
+                        <div class="oe_title">
+                            
+                            <div class="oe_edit_only">
+                                <label for="name" string="Registration Number"/>
+                                
+                            </div>
+                            <h1>
+                           
+                                <field name="name" on_change="on_change_wakf_regno_to_name_new_assess(name)"/>
+                      
+                            </h1>
+                            
+                            
+                        </div>
+                         
+                        <div class="oe_title">
+                       
+                            <div class="oe_edit_only">
+                                <label for="name" string="Account Year"/>
+                            </div>
+                            <h1>
+                                <field name="acc_year" on_change="on_change_acc_year_to_munbaki(name,acc_year)" placeholder="eg:2014"/>
+                            </h1>
+                          
+                        </div>
+                        </group>  
+                   		<group>
+                         <group>
+                         	
+                        	<field name="wakf_id"/>
+                        	<field name="district"/>
+                        	<field name="taluk"/>
+                        	<field name="village"/>
+                         </group>
+                         <group>
+                        	<field name="date_from"/>
+                        	<field name="assess_year"/>
+                        	<field name="temp_acc_year"/>
+                         </group>
+                        	<group>
+                        	<field name="total_income"/>
+                        	<field name="total_expense"/>
+                        	<field name="assess_amount"/>
+                         </group>
+                        	<group string="Kaivasam">
+                        	<field name="line_1"/>
+                        	<field name="line_2"/>
+                        	<field name="line_3"/>
+                         </group>
+                        </group>
+                        <notebook colspan="4">
+                        <page string="Income Details">
+                        	<field name="assess_line_id1" nolabel="1" widget="one2many_list">
+							 	 <tree string="Income Lines" editable="bottom">
+									<field name="statement_a"/>
+									<field name="description"/>
+									<!-- <field name="uom"/>								
+									<field name="amount"/>
+									<field name="quantity"/> -->									
+									<field name="unit_cost"/>
+								</tree>		
+								
+			
+							</field> 
+							<group>
+					       	</group>
+							<group class="oe_subtotal_footer oe_right">							 
+					  			<field name="amount_total1" class="oe_subtotal_footer_separator" widget="monetary"/>
+					        </group>
+					        <group>
+					       	</group>
+					       	<group>
+					       	</group>
+					       	 
+					                               
+                        </page>
+                        <page string="Expense Details">
+                        	<field name="assess_line_id2" nolabel="1" widget="one2many_list">
+                        		 <tree string="Expense Lines" editable="bottom">
+									<field name="statement_a"/>
+									<field name="description"/>
+									<!--<field name="uom"/>
+									<field name="amount"/>
+									<field name="quantity"/> -->									
+									<field name="unit_cost"/>
+								</tree>	
+							</field>
+							<group>
+					       	</group>
+					       	<group class="oe_subtotal_footer oe_right">
+							 
+								<field name="amount_total2" class="oe_subtotal_footer_separator" widget="monetary"/>
+					        </group>
+					        <group>
+					       	</group>
+					       	<group>
+					       	</group>
+								
+                        </page>
+                        </notebook>
+                        
+                       
+                    </sheet>
+                    </form>
+                 
+                </field>
+            </record>
+            
+          
+            
+       <!--   	<record model="ir.ui.view" id="assessment_window_line1_tree_view">
+                <field name="name">assessment.window.line1.tree</field>
+                <field name="model">assessment.window.line1</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="tree_string" editable="bottom">
+                        <field name="statement_a"/>
+                        <field name="description"/>
+                        <field name="quantity"/>
+                        <field name="uom"/>
+                        <field name="amount"/>
+                        
+                       
+                    </tree>
+                     <group class="oe_subtotal_footer oe_right">
+								<field name="amount_total" class="oe_subtotal_footer_separator" widget="monetary"/>
+							</group> 
+                </field>
+            </record> 
+            <record model="ir.ui.view" id="assessment_window_line2_tree_view">
+                <field name="name">assessment.window.line2.tree</field>
+                <field name="model">assessment.window.line2</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="tree_string" editable="bottom">
+                        <field name="statement_a"/>
+                        <field name="description"/>
+                        <field name="quantity"/>
+                        <field name="uom"/>
+                        <field name="amount"/>
+                        
+                       
+                    </tree>
+                </field>
+            </record>
+
+             -->
+            
+       			<report auto="False" id="report_id" model="model_name" 
+                name="report_name" rml="path/to/reportfile"
+                string="My Report"/>
+     		
+
+            
+
+
+            <record model="ir.actions.act_window" id="action_assessment1_window_tree_view">
+                <field name="name">Assessment Details</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">assessment.window</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="assessment1_window_tree_view"/>
+            </record>
+
+		   	<!-- <menuitem id="assessment1_window_menu" name="assessment_window" parent="account.next_id_27" action="action_assessment1_window_tree_view"/>--> 
+           <menuitem id="assessment1_window_menu" name="Assessment Details" parent="account.menu_finance" sequence="1" />
+           <menuitem id="assessment1_window_menu_1" name="Assessment" parent="assessment1_window_menu" action="action_assessment1_window_tree_view"/>
+           <!-- ====================changing main menu & sub menus in accounting========== -->
+           <menuitem name="Accounting" id="account.menu_finance" groups="account.group_account_user,account.group_account_manager,account.group_account_invoice" sequence="50"/>
+		   <menuitem id="account.menu_finance_receivables" name="Wakf Transactions" parent="account.menu_finance" sequence="2"/>
+           
+    
+    </data>
+</openerp>

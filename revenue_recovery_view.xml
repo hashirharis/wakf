@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	
+            
+            <record model="ir.ui.view" id="revenue_recovery_tree_view">
+                <field name="name">Revenue Recovery tree</field>
+                <field name="model">revenue.recovery</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="Revenue Recovery Tree" version="7.0">
+                        <field name="reg_no"/>
+                        <field name="partner_id"/>
+                        <field name="assess_year"/>
+                        <field name="wakf_district"/>
+                        <field name="recover_amount"/>
+                        <field name="collection_charge"/>
+                        <field name="grand_total"/>
+                        <field name="approve"/>
+                        <field name="send"/>
+                        <field name="cancel"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="revenue_recovery_form_view">
+                <field name="name">Revenue Recovery form</field>
+                <field name="model">revenue.recovery</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="Revenue Recovery Form" version="7.0">
+                    	<sheet>
+	                    	<group>
+	                    		<div class="oe_title">
+	                            
+	                            <div class="oe_edit_only">
+	                                <label for="name" string="Registration Number"/>
+	                                
+	                            </div>
+	                            <h1>
+	                           
+	                                <field name="reg_no"/>
+	                      
+	                            </h1>
+	                            
+	                            
+	                        </div>
+	                         
+	                        <div class="oe_title">
+	                       
+	                            <div class="oe_edit_only">
+	                                <label for="name" string="Assessment Year"/>
+	                            </div>
+	                            <h1>
+	                                <field name="assess_year" />
+	                            </h1>
+	                          
+	                        </div>
+	                        </group>
+                        <group>
+	                        <group>
+	                        	
+	                    		<field name="partner_id"/>
+	                        	<field name="wakf_district"/>
+	                        	<field name="recover_amount"/>
+	                        	<field name="collection_charge"/>
+	                        	<field name="grand_total"/>
+	                        	<field name="certified_date"/>
+	                        	<field name="approve"/>
+	                        </group>
+	                        <group>
+	                        	<field name="file_no"/>
+	                        	<field name="requisiton_no"/>
+	                        	<field name="certificate_no"/>                
+	                        	<field name="send"/>
+	                        	<field name="rr_execute"/>
+	                        	<field name="cancel"/>
+	                        	<field name="cancel_date"/> 
+	                        </group>
+                        </group>   
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_revenue_recovery_tree_view">
+                <field name="name">Revenue Recovery</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">revenue.recovery</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="revenue_recovery_tree_view"/>
+            </record>
+
+			<menuitem id="revenue_recovery_menu" name="Revenue Recovery" parent="assessment1_window_menu" action="action_revenue_recovery_tree_view"/>
+
+    
+    </data>
+</openerp>

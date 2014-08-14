@@ -1,0 +1,14 @@
+import sale_inherit
+import sale_order
+import wakf_immovable_property
+import wakf_movable_property
+import wakf_location
+import wakf_management
+import wakf_types
+import invoice_inherit
+import BJ_assessment
+import BJ_slab
+import Arrear_list
+import revenue_recovery
+import showcause  
+import earned_leave

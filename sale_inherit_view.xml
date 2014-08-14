@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+            <record id="view_res_partner_inherited" model="ir.ui.view">
+  			<field name="name">wasim</field>
+  			<field name="model">res.partner</field>
+  			<field name="inherit_id" ref="base.view_partner_form" />
+  			<field name="arch" type="xml">
+    <!-- ============================================================================== -->			
+				       
+            	<xpath expr="//form[@string='Partners']/sheet/group" position="inside"> 
+            			  	<group></group>
+            				<group></group>
+                            
+                                <group>
+                        		 	<field name="wakf_reg_no"/>                    	                     	
+                     				<field name="wakf_registration_date"/>
+                      				<field name="creation_date"/>
+                      				<field name="wakf_objectives"/>
+                      				<field name="suomoto"/>
+                      				<field name="phone"/>
+                      				<field name="wakf_old_name"/>
+                      	
+                    			</group> 
+                    			<group > 
+                        			<field name="type_id"/>
+                      				<field name="classification"/>   	
+                      				<field name="gazetted"/>
+                      				<field name='gazetted_date'/>
+                      	 		 	<field name="comm_addr"/>
+                    			</group>  
+                    			<group>
+                    				
+                        		  	<field name="postoffice"/>                   				
+                    				<field name="rule_succession"/>
+                    				
+                    			 </group> 
+                    			 <group>
+                    	 		 	 <field name="village_id" on_change="on_change_wakf_village_to_taluk(village_id)"/> 
+                    				 <field name="taluk_id"/>
+                    				 <field name="district_id"/> 
+                    			 </group>
+                    		                   		    
+                 </xpath>       
+                  <xpath expr="//page[@string='Sales &amp; Purchases']" position="attributes" >
+    					<attribute name="invisible">1</attribute>
+				 </xpath>
+				 
+				 <xpath expr="//page[@string='Accounting']" position="attributes" >
+    					<attribute name="invisible">1</attribute>
+				 </xpath>
+			
+                 <xpath expr="//form[@string='Partners']/sheet/group/group[1]" position="attributes" >
+    					<attribute name="invisible">1</attribute>
+				 </xpath>
+				 <xpath expr="//form[@string='Partners']/sheet/group/group[2]" position="attributes" >
+    					<attribute name="invisible">1</attribute>
+				 </xpath>
+				 
+				 <xpath expr="//form[@string='Partners']/sheet/div[@class='oe_title']/div[@class='oe_edit_only']" position="attributes" >
+    					<attribute name="invisible">1</attribute>
+				 </xpath>
+              
+                                                 	                        
+                    <notebook position="inside">
+                     <page string="Immovable Property Details">
+                         <field name="wakf_immovable_property_id"/>                     
+                     </page>
+                     <page string="Movable Property Details">
+                         <field name="wakf_movable_property_id"/>                     
+                     </page>
+                     <page string="Management Details">
+                         <field name="wakf_management_id"/>                     
+                     </page>
+                     
+                    </notebook>
+                    
+        	</field>	
+		
+			</record>
+		<record id="view_res_partner_inherited_1" model="ir.ui.view">
+  			<field name="name">view.res.partner.inherited</field>
+  			<field name="model">res.partner</field>
+  			<field name="inherit_id" ref="base.view_partner_tree" />
+  			<field name="arch" type="xml">
+  			<xpath expr="//tree[@string='Contacts']/field[@name='name']" position="before">
+  				<field name="wakf_reg_no"/>
+  			</xpath>
+  			<xpath expr="//tree[@string='Contacts']/field[@name='name']" position="after">
+  				<field name="district_id"/>
+  			</xpath>
+  			</field>
+  			</record>
+  				
+		<record id="view_res_partner_inherited_2" model="ir.ui.view">
+  			<field name="name">view.res.partner.inherited</field>
+  			<field name="model">res.partner</field>
+  			<field name="inherit_id" ref="base.view_res_partner_filter" />
+  			<field name="arch" type="xml">	
+  				<xpath expr="//search[@string='Search Partner']/field[@name='name']" position="replace">
+  					<field name="wakf_reg_no" filter_domain="['|','|',('wakf_reg_no','=',self),('parent_id','ilike',self),('ref','=',self)]"/>
+  				</xpath>
+  			</field>
+  			</record>
+			
+
+	</data>
+</openerp>
+
+	 

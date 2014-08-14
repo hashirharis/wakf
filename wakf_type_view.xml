@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+            <record model="ir.ui.view" id="wakf_type_tree_view">
+                <field name="name">wakf.type.tree</field>
+                <field name="model">wakf.type</field>
+                <field name="type">tree</field>
+                <field name="arch" type="xml">
+                    <tree string="tree_string">
+                        <field name="name"/>
+                        <field name="description"/>
+                        <!-- <field name="wakf_id"/> -->
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="wakf_type_form_view">
+                <field name="name">wakf.type.form</field>
+                <field name="model">wakf.type</field>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <form string="form_string">
+                        <group>
+                        	<field name="name" select="1"/>
+                        	<field name="description"/>
+                        	<!--<field name="wakf_id"/>-->
+                        </group>
+                    </form>
+                </field>
+            </record>
+
+
+			<record model="ir.actions.act_window" id="action_wakf_type_tree_view">
+                <field name="name">wakf.type</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">wakf.type</field>
+		   <!-- <field name="domain">[('field_name','condition',criteria)]</field>-->
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="wakf_type_tree_view"/>
+            </record>
+
+
+            <menuitem id="wakf_type_menu" name="Wakf Type" parent="base.menu_sales" action="action_wakf_type_tree_view"/>
+    
+    
+    
+    </data>
+</openerp>
